@@ -6,8 +6,7 @@ using TMPro;
 using System;
 using UnityEngine.EventSystems;
 
-public class InventoryButton : MonoBehaviour
-    //, IPointerClickHandler
+public class InventoryButton : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] Image icon;
     [SerializeField] TextMeshProUGUI text;
@@ -43,10 +42,10 @@ public class InventoryButton : MonoBehaviour
         text.gameObject.SetActive(false);
     }
 
-    //public void OnPointerClick(PointerEventData eventData)
-    //{
-    //    ItemContainer inventory = GameManager.instance.inventoryContainer;
-    //    GameManager.instance.dragAndDrop.OnClick(inventory.slots[myIndex]);
-    //    //transform.parent.GetComponent<InventoryPanel>().Show();
-    //}
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        ItemContainer inventory = GameManager.instance.inventoryContainer;
+        GameManager.instance.dragAndDrop.OnClick(inventory.slots[myIndex]);
+        //transform.parent.GetComponent<InventoryPanel>().Show();
+    }
 }
