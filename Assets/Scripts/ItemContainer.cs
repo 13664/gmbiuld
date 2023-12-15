@@ -26,7 +26,7 @@ public class ItemSlot
 }
 
 [CreateAssetMenu(menuName= "Data/Item Container")]
-public class ItenContainer : ScriptableObject
+public class ItemContainer : ScriptableObject
 {
     public List<ItemSlot> slots;
     public void Add(Item item, int count = 1)

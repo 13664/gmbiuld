@@ -4,42 +4,38 @@ using UnityEngine;
 
 public class InventoryPanel : MonoBehaviour
 {
-    //[serializefield] itencontainer inventory;
-    //[serializefield] list<inventorybutton> buttons;
+    [SerializeField] ItemContainer inventory;
+    [SerializeField] List<InventoryButton> buttons;
 
 
-    //private void start()
-    //{
-    //    setindex();
-    //    show();
-    //}
-    //private void onenable()
-    //{
-    //    show();
-    //}
-    //private void setindex()
-    //{
-    //    for (int i = 0; i < inventory.slots.count; i++)
-    //    {
-
-    //        buttons[i].setindex(i);
-
-    //    }
-    //}
-    //public void show()
-    //{
-    //    for (int i = 0; i < inventory.slots.count; i++)
-    //    {
-    //        if (inventory.slots[i].item == null)
-    //        {
-    //            buttons[i].clean();
-    //        }
-    //        else
-    //        {
-    //            buttons[i].set(inventory.slots[i]);
-    //        }
-    //    }
-    //}
-
-
+    private void Start()
+    {
+        SetIndex();
+        Show();
+    }
+    private void OnEnable()
+    {
+        Show();
+    }
+    private void SetIndex()
+    {
+        for (int i = 0; i < inventory.slots.Count; i++)
+        {
+            buttons[i].SetIndex(i);
+        }
+    }
+    public void Show()
+    {
+        for (int i = 0; i < inventory.slots.Count; i++)
+        {
+            if (inventory.slots[i].item == null)
+            {
+                buttons[i].Clean();
+            }
+            else
+            {
+                buttons[i].Set(inventory.slots[i]);
+            }
+        }
+    }
 }
