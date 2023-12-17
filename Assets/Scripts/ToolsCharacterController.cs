@@ -14,6 +14,9 @@ public class ToolsCharacterController : MonoBehaviour
     [SerializeField] float maxDistance = 1.5f;
     [SerializeField] CropManager cropsManager;
     [SerializeField] TileData plowableTiles;
+    [SerializeField] int treeNumberInput = 4;
+    [SerializeField] int plowableNumberInput = 4;
+    [SerializeField] GameObject CanvasWin;
 
 
     Vector3Int selectedTilePosition;
@@ -38,6 +41,16 @@ public class ToolsCharacterController : MonoBehaviour
             UseToolGrid();
         }
     }
+    public void HandleWin(int cut)
+    {
+        Debug.Log("Cut" + cut);
+        if(cut >= treeNumberInput )
+        {
+            CanvasWin.SetActive(true);
+        }
+       
+    }
+
 
     private void SelectTile()
     {
