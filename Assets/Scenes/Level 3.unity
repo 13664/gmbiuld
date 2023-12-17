@@ -4629,7 +4629,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 551398755}
         m_TargetAssemblyTypeName: HandleScenes, Assembly-CSharp
-        m_MethodName: OpenLevel2
+        m_MethodName: OpenLevel4
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
