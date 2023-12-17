@@ -44,7 +44,7 @@ public class ToolsCharacterController : MonoBehaviour
     public void HandleWin(int cut)
     {
         Debug.Log("Cut" + cut);
-        if(cut >= treeNumberInput)
+        if(cut >= treeNumberInput )
         {
             CanvasWin.SetActive(true);
         }
