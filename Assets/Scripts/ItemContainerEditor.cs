@@ -1,25 +1,18 @@
-//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
+using UnityEditor;
+using UnityEngine;
 
-
-
-
-
-////[CustomEditor(typeof(ItenContainer))]
-//public class itemcontainereditor
-//{
-//    public void oninspectorgui()
-//    {
-//        itencontainer container = target as itencontainer;
-//        if (guilayout.button("clear container"))
-//        {
-//            for (int i = 0; i < container.slots.count; i++)
-//            {
-//                container.slots[i].clear();
-//            }
-//        }
-
-
-//    }
-//}
+[CustomEditor(typeof(ItemContainer))]
+public class ItemContainerEditor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        ItemContainer container = target as ItemContainer;
+        if (GUILayout.Button("Clear Container"))
+        {
+            for (int i = 0; i < container.slots.Count; i++)
+            {
+                container.slots[i].Clear();
+            }
+        }
+    }
+}

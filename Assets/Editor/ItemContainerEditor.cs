@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor; 
-[CustomEditor(typeof(ItenContainer))]
+[CustomEditor(typeof(ItemContainer))]
 public class ItemContainerEditor : Editor
 {
     public override void OnInspectorGUI()
     {
-        ItenContainer container = target as ItenContainer;
+        ItemContainer container = target as ItemContainer;
         if(GUILayout.Button("Clear container"))
         {
             for(int i = 0; i < container.slots.Count; i++)

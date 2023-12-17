@@ -20,7 +20,7 @@ public class InventoryButton : MonoBehaviour, IPointerClickHandler
     public void Set(ItemSlot slot)
     {
         icon.gameObject.SetActive(true);
-        // icon.sprite = sprite.item.icon;
+        icon.sprite = slot.item.icon;
        
 
         if (slot.item.stackable == true)
@@ -36,7 +36,7 @@ public class InventoryButton : MonoBehaviour, IPointerClickHandler
 
     public void Clean()
     {
-        //icon.sprite = null;
+        icon.sprite = null;
         icon.gameObject.SetActive(false);
 
         text.gameObject.SetActive(false);
@@ -44,7 +44,7 @@ public class InventoryButton : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        ItenContainer inventory = GameManager.instance.inventoryContainer;
+        ItemContainer inventory = GameManager.instance.inventoryContainer;
         GameManager.instance.dragAndDrop.OnClick(inventory.slots[myIndex]);
         //transform.parent.GetComponent<InventoryPanel>().Show();
     }
