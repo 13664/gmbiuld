@@ -34,7 +34,7 @@ public class InventoryPanel : MonoBehaviour
             }
             else
             {
-                buttons[i].Set(inventory.slots[i]);s
+                buttons[i].Set(inventory.slots[i]);
             }
         }
     }
