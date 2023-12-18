@@ -7,6 +7,7 @@ public class ToolsCharacterController : MonoBehaviour
 {
     CharacterController2D character;
     Rigidbody2D rigidbody2d;
+     int plowNum = 0;
     [SerializeField] float offsetDistance = 1f;
     [SerializeField] float sizeOfInteractable = 1.2f;
     [SerializeField] MarkerManager markerManager;
@@ -14,8 +15,8 @@ public class ToolsCharacterController : MonoBehaviour
     [SerializeField] float maxDistance = 1.5f;
     [SerializeField] CropManager cropsManager;
     [SerializeField] TileData plowableTiles;
-    [SerializeField] int treeNumberInput = 4;
-    [SerializeField] int plowableNumberInput = 4;
+    [SerializeField] int treeNumberInput = 8;
+    [SerializeField] int plowableNumberInput = 10;
     [SerializeField] GameObject CanvasWin;
 
 
@@ -32,24 +33,16 @@ public class ToolsCharacterController : MonoBehaviour
         SelectTile();
         CanSelectedCheck();
         Marker();
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
-           if (UseToolWorld() == true)
+            if (UseToolWorld() == true)
             {
                 return;
             }
             UseToolGrid();
         }
     }
-    public void HandleWin(int cut)
-    {
-        Debug.Log("Cut" + cut);
-        if(cut >= treeNumberInput )
-        {
-            CanvasWin.SetActive(true);
-        }
-       
-    }
+
 
 
     private void SelectTile()
@@ -58,7 +51,7 @@ public class ToolsCharacterController : MonoBehaviour
         //Vector3Int gridPosition = mapReadController.GetGridPosition(Input.mousePosition, true);
     }
 
-    public  void CanSelectedCheck()
+    public void CanSelectedCheck()
     {
         Vector2 characterPosition = transform.position;
         Vector2 cameraPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -69,36 +62,36 @@ public class ToolsCharacterController : MonoBehaviour
 
     private void Marker()
     {
-        markerManager.markedCellPosition =  selectedTilePosition;
+        markerManager.markedCellPosition = selectedTilePosition;
     }
 
 
     private bool UseToolWorld()
     {
-        Vector2 position = rigidbody2d.position +  character.lastMotionVector * offsetDistance;
+        Vector2 position = rigidbody2d.position + character.lastMotionVector * offsetDistance;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(position, sizeOfInteractable);
-        foreach(Collider2D c in  colliders)
+        foreach (Collider2D c in colliders)
         {
             ToolKit hit = c.GetComponent<ToolKit>();
-            if(hit != null)
+            if (hit != null)
             {
                 hit.Hit();
                 return true;
             }
         }
         return false;
-    
+
     }
 
     private void UseToolGrid()
     {
-        if(selectable == true)
+        if (selectable == true)
         {
             TileBase tileBase = mapReadController.GetTileBase(selectedTilePosition);
             TileData tileData = mapReadController.GetTileData(tileBase);
-            if(tileData != plowableTiles)
+            if (tileData != plowableTiles)
             {
-                return; 
+                return;
             }
 
             if (cropsManager.Check(selectedTilePosition))
@@ -108,7 +101,31 @@ public class ToolsCharacterController : MonoBehaviour
             else
             {
                 cropsManager.Plow(selectedTilePosition);
+                plowNum++;
+                HandlePlow(plowNum);
             }
         }
     }
+
+    public void HandleCut(int cut)
+    {
+
+        if (cut >= treeNumberInput && HandlePlow(plowNum))
+        {
+                CanvasWin.SetActive(true);
+        }
+
+    }
+
+    public bool HandlePlow(int plow)
+    {
+        if (plow > plowableNumberInput)
+        {
+            return true;
+        }
+        return false;
+
+    }
 }
+
+    

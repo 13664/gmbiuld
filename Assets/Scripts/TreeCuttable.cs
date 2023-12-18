@@ -61,7 +61,7 @@ public class TreeCuttable : ToolKit
         if (characterController != null)
         {
             // Call the HandleWin method and pass the cutTreeNumber
-            characterController.HandleWin(cutTreeNumber);
+            characterController.HandleCut(cutTreeNumber);
         }
     }
 }
