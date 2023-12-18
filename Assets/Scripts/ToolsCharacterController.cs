@@ -113,6 +113,7 @@ public class ToolsCharacterController : MonoBehaviour
         if (cut >= treeNumberInput && HandlePlow(plowNum))
         {
                 CanvasWin.SetActive(true);
+                Time.timeScale = 0;
         }
 
     }

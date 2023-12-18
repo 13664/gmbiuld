@@ -1,6 +1,7 @@
+#if UNITY_EDITOR
+
 using UnityEditor;
 using UnityEngine;
-
 [CustomEditor(typeof(ItemContainer))]
 public class ItemContainerEditor : Editor
 {
@@ -16,3 +17,5 @@ public class ItemContainerEditor : Editor
         }
     }
 }
+
+#endif
